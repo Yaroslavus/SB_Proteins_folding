@@ -38,7 +38,7 @@ sudo rm -rf /opt/conda
 echo "${bold}Progress:  15%${normal}"
 echo "Installing the latest version of Miniconda..."
 wget -q -P /tmp https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-        && sudo cp /tmp/Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda \
+        && sudo cp /tmp/Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda/ \
         && rm /tmp/Miniconda3-latest-Linux-x86_64.sh
 echo 'export PATH=/opt/conda/bin:$PATH' >> ~/.bashrc
 
@@ -88,19 +88,19 @@ sudo cp -f /content/stereo_chemical_props.txt /opt/conda/lib/python3.7/site-pack
 
 echo "${bold}Progress:  70%${normal}"
 
-sudo mkdir -q --parents "{PARAMS_DIR}"
-sudo wget -q -O "{PARAMS_PATH}" "{SOURCE_URL}"
-sudo tar -q --extract --verbose --file="{PARAMS_PATH}" \
-    --directory="{PARAMS_DIR}" --preserve-permissions
-sudo rm "{PARAMS_PATH}"
+sudo mkdir --parents ${PARAMS_DIR}
+sudo wget -q -O ${PARAMS_PATH} ${SOURCE_URL}
+sudo tar --extract --verbose --file=${PARAMS_PATH} \
+    --directory=${PARAMS_DIR} --preserve-permissions
+sudo rm ${PARAMS_PATH}
 
 echo "${bold}Progress:  80%${normal}"
 
-sudo wget -O "{PARAMS_PATH_V2}" "{SOURCE_URL_V2}"
+sudo wget -O ${PARAMS_PATH_V2} ${SOURCE_URL_V2}
 
-sudo tar --extract --verbose --file="{PARAMS_PATH_V2}" \
-    --directory="{PARAMS_DIR}" --preserve-permissions
-sudo rm "{PARAMS_PATH_V2}"
+sudo tar --extract --verbose --file=${PARAMS_PATH_V2} \
+    --directory=${PARAMS_DIR} --preserve-permissions
+sudo rm ${PARAMS_PATH_V2}
 
 echo "${bold}Success!${normal}"
 # =============================================================================
