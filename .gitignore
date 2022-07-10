@@ -1,4 +1,5 @@
 .spyproject/
 __pycache__/
 alphafold/
-{PARAMS_DIR}
+af2_wrapper/
+.sb_err.log

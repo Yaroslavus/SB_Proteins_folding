@@ -107,13 +107,12 @@ echo "${bold}Success!${normal}"
 #
 # =============================================================================
 PARAMS_DIR='./alphafold/data'
-python sb_install_dependencies_2.py
 # =============================================================================
 #
 # =============================================================================
-git clone --branch master {WRAPPER_REPO} af2_wrapper && cd af2_wrapper \
+WRAPPER_REPO='https://bitbucket.org/abc-group/af2_wrapper.git'
+git clone --branch master ${WRAPPER_REPO} af2_wrapper && cd af2_wrapper \
       && git checkout e4a048542102cb97040a414c3831ce18a98647ec && cd ..
 # =============================================================================
 #
 # =============================================================================
-python sb_install_dependencies_3.py

@@ -1,1 +1,1 @@
-./sb_install_dependencies_1.sh: line 47: conda: command not found
+./sb_install_dependencies.sh: line 47: conda: command not found

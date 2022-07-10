@@ -23,3 +23,16 @@ sys.path.append('/content/alphafold')
 import os
 os.environ['TF_FORCE_UNIFIED_MEMORY'] = '1'
 os.environ['XLA_PYTHON_CLIENT_MEM_FRACTION'] = '2.0'
+
+
+sys.path.append('/content/af2_wrapper')
+
+
+import warnings
+from absl import logging
+import tensorflow as tf
+
+warnings.filterwarnings('ignore')
+logging.set_verbosity("error")
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '3'
+tf.get_logger().setLevel('ERROR')
