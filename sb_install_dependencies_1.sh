@@ -37,10 +37,14 @@ rm -rf /opt/conda
 
 echo "${bold}Progress:  15%${normal}"
 echo "Installing the latest version of Miniconda..."
+#mkdir /opt/conda
 wget -q -P /tmp https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
-        && sudo cp /tmp/Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda/ \
+        && bash /tmp/Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda/ \
         && rm /tmp/Miniconda3-latest-Linux-x86_64.sh
 echo 'export PATH=/opt/conda/bin:$PATH' >> ~/.bashrc
+export PATH=/opt/conda/bin:$PATH
+#chmod +x Miniconda3-latest-Linux-x86_64.sh
+#./opt/conda/Miniconda3-latest-Linux-x86_64.sh
 
 echo "${bold}Progress:    20%${normal}"
 echo "Updating of the conda & python..."
@@ -110,6 +114,7 @@ PARAMS_DIR='./alphafold/data'
 #
 # =============================================================================
 WRAPPER_REPO='https://bitbucket.org/abc-group/af2_wrapper.git'
+rm -rf af2_wrapper
 git clone --branch master ${WRAPPER_REPO} af2_wrapper && cd af2_wrapper \
       && git checkout e4a048542102cb97040a414c3831ce18a98647ec && cd ..
 # =============================================================================

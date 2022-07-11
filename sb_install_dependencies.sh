@@ -28,13 +28,14 @@ PARAMS_PATH_V2=$(python -c "$py_script" ${PARAMS_DIR} ${SOURCE_URL_V2})
 
 echo "${bold}Progress:  5%${normal}"
 echo "Uninstalling current version of tensorflow..."
-pip uninstall -y tensorflow 1>/dev/null 2> >(tee .sb_err.log)
+pip uninstall -y tensorflow
 
 echo "${bold}Progress:  10%${normal}"
 echo "Installing hmmer..."
-sudo apt install -y hmmer 1>/dev/null 2> >(tee .sb_err.log)
+sudo apt install -y hmmer
 sudo rm -rf /opt/conda
 
+sudo mkdir /opt/conda
 echo "${bold}Progress:  15%${normal}"
 echo "Installing the latest version of Miniconda..."
 wget -q -P /tmp https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh \
@@ -44,8 +45,7 @@ echo 'export PATH=/opt/conda/bin:$PATH' >> ~/.bashrc
 
 echo "${bold}Progress:    20%${normal}"
 echo "Updating of the conda & python..."
-conda update -q -y conda 1>/dev/null 2> >(tee .sb_err.log) \
-&& conda install -q -y -c conda-forge python=3.7 1>/dev/null 2> >(tee .sb_err.log)
+conda update -q -y conda && conda install -q -y -c conda-forge python=3.7
 sudo mkdir -m 777 --parents /tmp/ramdisk
 sudo mount -t tmpfs -o size=9G ramdisk /tmp/ramdisk
 
