@@ -53,7 +53,7 @@ chain_names = ''.join(all_chains_list)
 delete_existing_files = True #@param {type:"boolean"} 
 
 if delete_existing_files:
-    !rm -rf uploads_tmp* pdb_folder* uploads*
+    subprocess.call(["rm", "-rf", "uploads_tmp*", "pdb_folder*", "uploads*"])
 
 import os
 import shutil
@@ -66,21 +66,21 @@ uploaded_files = files.upload()
 uploads_dir = 'uploads'
 tmp_dir = 'uploads_tmp'
 pdb_dir = 'pdb_folder'
-!mkdir -p $uploads_dir
-!mkdir -p $tmp_dir
-!mkdir -p $pdb_dir
+subprocess.call(["mkdir", "-p", "$uploads_dir"])
+subprocess.call(["mkdir", "-p", "$tmp_dir"])
+subprocess.call(["mkdir", "-p", "$pdb_dir"])
 
 for fname in uploaded_files.keys():
-    !mv ./{fname} ./{uploads_dir}/{fname}
+    subprocess.call(["mv", "./{fname}", "./{uploads_dir}/{fname}"])
     cur_file_path = os.path.join('.',uploads_dir,fname)
     fbase, fext = os.path.splitext(fname)
     #tmp_folder = os.path.join('.','tmp_pdb_folder')
     if fext == '.zip':
-        !unzip $cur_file_path -d {tmp_dir}
+        subprocess.call(["unzip", "$cur_file_path", "-d", "{tmp_dir}"])
     elif fext == '.bz2':
-        !tar -xf $cur_file_path -C {tmp_dir}
+        subprocess.call(["tar", "-xf", "$cur_file_path", "-C", "{tmp_dir}"])
     elif fext == '.pdb':
-        !cp $cur_file_path {tmp_dir}/
+        subprocess.call(["cp", "$cur_file_path", "{tmp_dir}/"])
 
 pdbs_new = []
 for root,dirs,files in os.walk(tmp_dir):
@@ -135,7 +135,7 @@ parameter_set = 'monomer_ptm' #@param ["multimer", "multimer_v2", "monomer_ptm"]
 delete_existing_files = True #@param {type:"boolean"} 
 
 if delete_existing_files:
-    !rm -f *.pdb *.pkl *.csv
+    subprocess.call(["rm", "-f", "*.pdb", "*.pkl", "*.csv"])
 
 import csv
 
@@ -216,6 +216,6 @@ data
 # Download refined models and scores.
 # =============================================================================
 
-!rm -f ./job_{job_name}.zip
-!zip ./job_{job_name}.zip ./{job_name}.*.pdb ./{job_name}.*.pkl ./{job_name}.*.csv ./confidence_scores.all.csv
+subprocess.call(["rm", "-f", "./job_{job_name}.zip"])
+subprocess.call(["zip", "./job_{job_name}.zip", "./{job_name}.*.pdb", "./{job_name}.*.pkl", "./{job_name}.*.csv", "./confidence_scores.all.csv"])
 files.download(f"./job_{job_name}.zip")
