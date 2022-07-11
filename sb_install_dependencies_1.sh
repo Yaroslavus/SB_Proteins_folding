@@ -41,6 +41,7 @@ wget -q -P /tmp https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_
         && sudo cp /tmp/Miniconda3-latest-Linux-x86_64.sh -b -p /opt/conda/ \
         && rm /tmp/Miniconda3-latest-Linux-x86_64.sh
 echo 'export PATH=/opt/conda/bin:$PATH' >> ~/.bashrc
+source ~/.bashrc
 
 echo "${bold}Progress:    20%${normal}"
 echo "Updating of the conda & python..."
@@ -115,3 +116,5 @@ git clone --branch master ${WRAPPER_REPO} af2_wrapper && cd af2_wrapper \
 # =============================================================================
 #
 # =============================================================================
+pip install --upgrade "jax[cuda]" -f https://storage.googleapis.com/jax-releases/jax_cuda_releases.html
+
